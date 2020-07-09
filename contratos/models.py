@@ -29,7 +29,7 @@ class Contrato (models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.numeroContrato
+        return self.numero_contrato
 
     def aditivos(self):
         return Aditivo.objects.filter(contrato_id = self)
