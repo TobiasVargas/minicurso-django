@@ -26,4 +26,7 @@ class Contrato (models.Model):
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
     arquivo = models.FileField(upload_to='files_contratos/')
-    usuario = User
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.numeroContrato
