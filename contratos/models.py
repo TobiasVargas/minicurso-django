@@ -15,7 +15,7 @@ class Contrato (models.Model):
         ('2', 'Cancelado'),
     ]
 
-    numeroContrato = models.CharField(max_length=50)
+    numero_contrato = models.CharField(max_length=50)
     valor = models.DecimalField(max_digits=15, decimal_places=2)
     descricao = models.TextField(blank=True, null=True)
     data_inicio = models.DateField()
@@ -30,3 +30,15 @@ class Contrato (models.Model):
 
     def __str__(self):
         return self.numeroContrato
+
+    def aditivos(self):
+        return Aditivo.objects.filter(contrato_id = self)
+
+
+class Aditivo(models.Model):
+    contrato = models.ForeignKey(Contrato, on_delete=models.CASCADE)
+    descricao = models.TextField(null=True, blank=True)
+    arquivo = models.FileField(upload_to='files_contratos_aditivos')
+
+    def __str__(self):
+        return "Contrato Aditivo Referente ao Contrato " + self.contrato.numero_contrato
