@@ -36,7 +36,7 @@ class Contrato (models.Model):
 
 
 class Aditivo(models.Model):
-    contrato = models.ForeignKey(Contrato, on_delete=models.CASCADE)
+    contrato = models.ForeignKey(Contrato, on_delete=models.CASCADE, related_name='contratos')
     descricao = models.TextField(null=True, blank=True)
     arquivo = models.FileField(upload_to='files_contratos_aditivos')
 
